@@ -1,0 +1,55 @@
+﻿@model PeopleEvents.Models.Person
+
+@{
+	ViewBag.Title = "View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+	<div class="col-md-6">
+		<h4>Person Details</h4>
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.DateOfBirth)
+			</dt>
+
+			<dd>
+				@{ string dateOfBirthDisplay = Model.DateOfBirth.ToString("dd-MMMM-yyyy"); }
+				@Html.DisplayFor(model => dateOfBirthDisplay)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Gender)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Gender)
+			</dd>
+
+		</dl>
+	</div>
+	<div id="events" class="col-md-6">
+		@Html.Action("EventView", Model.ID)
+	</div>
+</div>
+<div class="row">
+	<p>
+		<!-- @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) | -->
+		@Html.ActionLink("Back to List", "Index", "Home")
+	</p>
+</div>
+
+<!-- Script to auto-refresh the partial view for events -->
+<script type="text/javascript">
+	$(function () {
+		setInterval(function () { $('#events').load('/Person/EventView/' + @Model.ID); }, 3000);
+	})
+</script>

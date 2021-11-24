@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PeopleEvents.Models.Event>
+
+<h4>Events</h4>
+
+<table>
+	@foreach (var personEvent in Model)
+	{
+		<tr>
+			<td>
+				@personEvent.EventDateTime.ToString("dd-MM-yyyy"): @personEvent.EventDescription
+			</td>
+		</tr>
+	}
+</table>
+
+@DateTime.Now
