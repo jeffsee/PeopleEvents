@@ -17,5 +17,13 @@ namespace PeopleEvents.Controllers
             EventService es = new EventService();
             return PartialView(es.GetEventsForPerson(id));
 		}
+
+        [Route("Person/UnlinkEvent/{personID}/{eventID}")]
+        public ActionResult UnlinkEvent(int personID, int eventID)
+		{
+            EventService es = new EventService();
+            es.UnlinkEvent(personID, eventID);
+            return RedirectToAction("View", new { id = personID });
+        }
     }
 }

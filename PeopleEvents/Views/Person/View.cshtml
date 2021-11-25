@@ -47,9 +47,9 @@
 	</p>
 </div>
 
-<!-- Script to auto-refresh the partial view for events -->
+<!-- Script to auto-refresh the events partial view every five seconds -->
 <script type="text/javascript">
 	$(function () {
-		setInterval(function () { $('#events').load('/Person/EventView/' + @Model.ID); }, 3000);
+		setInterval(function () { $('#events').load('/Person/EventView/' + @Model.ID); }, 5000);
 	})
 </script>

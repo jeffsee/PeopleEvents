@@ -1,8 +1,6 @@
 ﻿using PeopleEvents.DAL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace PeopleEvents.Models
 {
@@ -18,10 +16,44 @@ namespace PeopleEvents.Models
 		/// </summary>
 		/// <param name="personID"></param>
 		/// <returns></returns>
-		public List<Event> GetEventsForPerson(int personID)
+		public PersonEventsViewModel GetEventsForPerson(int personID)
 		{
+			var pevm = new PersonEventsViewModel();
+			pevm.PersonID = personID;
 			var listOfEventIds = db.PersonEvents.Where(pe => pe.PersonID == personID).Select(pe => pe.EventID).ToList();
-			return db.Events.Where(e => listOfEventIds.Contains(e.ID)).ToList();
+			pevm.PersonEvents = db.Events.Where(e => listOfEventIds.Contains(e.ID)).OrderBy(e => e.EventDateTime).ToList();
+
+			return pevm;
+		}
+
+		/// <summary>
+		/// Attempts to reconcile an event to a person based off name and date of birth
+		/// </summary>
+		/// <param name="eventToRec"></param>
+		public void ReconcileEventToPerson(Event eventToRec)
+		{
+			var matchedPerson = db.People.Where(p => p.Name == eventToRec.PersonName && p.DateOfBirth == eventToRec.DateOfBirth).FirstOrDefault();
+
+			if (matchedPerson != null)
+			{
+				var newPersonEvent = new PersonEvent() { EventID = eventToRec.ID, PersonID = matchedPerson.ID };
+				db.PersonEvents.Add(newPersonEvent);
+				db.SaveChanges();
+			}
+		}
+
+		/// <summary>
+		/// Removes the person -> event link for the given event ID
+		/// </summary>
+		/// <param name="eventID"></param>
+		public void UnlinkEvent(int personID, int eventID)
+		{
+			var linkToUnlink = db.PersonEvents.Where(pe => pe.PersonID == personID && pe.EventID == eventID).FirstOrDefault();
+			if (linkToUnlink != null)
+			{
+				db.PersonEvents.Remove(linkToUnlink);
+				db.SaveChanges();
+			}
 		}
 	}
 }

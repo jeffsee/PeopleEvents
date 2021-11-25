@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PeopleEvents.Models
+﻿namespace PeopleEvents.Models
 {
 	/// <summary>
 	/// Model the link between person and event for the EF database

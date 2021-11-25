@@ -1,16 +1,21 @@
-﻿@model IEnumerable<PeopleEvents.Models.Event>
+﻿@model PeopleEvents.Models.PersonEventsViewModel
 
 <h4>Events</h4>
 
 <table>
-	@foreach (var personEvent in Model)
+	@foreach (var personEvent in Model.PersonEvents)
 	{
 		<tr>
-			<td>
+			<td style="padding: 5px;">
 				@personEvent.EventDateTime.ToString("dd-MM-yyyy"): @personEvent.EventDescription
+			</td>
+			<td style="padding: 5px;">
+				@Html.ActionLink("Unlink", "UnlinkEvent", new { personID = Model.PersonID, eventID = personEvent.ID })
 			</td>
 		</tr>
 	}
 </table>
 
-@DateTime.Now
+<p>
+	Last updated: @DateTime.Now
+</p>
