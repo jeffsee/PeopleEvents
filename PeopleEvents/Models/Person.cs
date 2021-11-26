@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PeopleEvents.Models
 {
@@ -9,6 +10,7 @@ namespace PeopleEvents.Models
 	{
 		public int ID { get; set; }
 		public string Name { get; set; }
+		[Display(Name = "Date of Birth")]
 		public DateTime DateOfBirth { get; set; }
 		public string Gender { get; set; }
 	}

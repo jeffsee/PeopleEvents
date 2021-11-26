@@ -1,5 +1,4 @@
 ﻿using PeopleEvents.DAL;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace PeopleEvents.Models
@@ -14,8 +13,8 @@ namespace PeopleEvents.Models
 		/// <summary>
 		/// Returns all events associated with a person
 		/// </summary>
-		/// <param name="personID"></param>
-		/// <returns></returns>
+		/// <param name="personID">The ID of the person</param>
+		/// <returns>A person-events view model</returns>
 		public PersonEventsViewModel GetEventsForPerson(int personID)
 		{
 			var pevm = new PersonEventsViewModel();
@@ -29,7 +28,7 @@ namespace PeopleEvents.Models
 		/// <summary>
 		/// Attempts to reconcile an event to a person based off name and date of birth
 		/// </summary>
-		/// <param name="eventToRec"></param>
+		/// <param name="eventToRec">The event to attempt to reconcile</param>
 		public void ReconcileEventToPerson(Event eventToRec)
 		{
 			var matchedPerson = db.People.Where(p => p.Name == eventToRec.PersonName && p.DateOfBirth == eventToRec.DateOfBirth).FirstOrDefault();
@@ -45,7 +44,8 @@ namespace PeopleEvents.Models
 		/// <summary>
 		/// Removes the person -> event link for the given event ID
 		/// </summary>
-		/// <param name="eventID"></param>
+		/// <param name="personID">The person ID to unlink from</param>
+		/// <param name="eventID">The event ID to unlink</param>
 		public void UnlinkEvent(int personID, int eventID)
 		{
 			var linkToUnlink = db.PersonEvents.Where(pe => pe.PersonID == personID && pe.EventID == eventID).FirstOrDefault();

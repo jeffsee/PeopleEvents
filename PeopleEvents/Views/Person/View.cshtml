@@ -1,7 +1,7 @@
 ﻿@model PeopleEvents.Models.Person
 
 @{
-	ViewBag.Title = "View";
+	ViewBag.Title = Model.Name;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
@@ -22,7 +22,7 @@
 			</dt>
 
 			<dd>
-				@{ string dateOfBirthDisplay = Model.DateOfBirth.ToString("dd-MMMM-yyyy"); }
+				@{ string dateOfBirthDisplay = Model.DateOfBirth.ToString("dd MMMM yyyy"); }
 				@Html.DisplayFor(model => dateOfBirthDisplay)
 			</dd>
 

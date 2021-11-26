@@ -15,8 +15,8 @@ namespace PeopleEvents.Controllers
         private PEContext db = new PEContext();
 
         /// <summary>
-        /// Randomly generates an event, and adds it to the database (and attempt to reconcile with a person - which it should always do as we're using existing people's data)
-        /// Used to simulate accessing data from an external Events source
+        /// Randomly generates an event and adds it to the database (and attempt to reconcile with a person - which it should always do as we're using existing people's data)
+        /// Used to simulate obtaining data from an external Events source
         /// In a real world scenario, this would probably be a separate project which would poll the external source, import new events, then attempt to reconcile them
         /// </summary>
         /// <returns>The new event</returns>
