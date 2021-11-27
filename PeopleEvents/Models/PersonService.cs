@@ -29,5 +29,40 @@ namespace PeopleEvents.Models
 		{
 			return db.People.Find(personID);
 		}
+
+		/// <summary>
+		/// Attempts to save the given person
+		/// </summary>
+		/// <param name="person"></param>
+		/// <returns>The ID of the person saved</returns>
+		public int SavePerson(Person person)
+		{
+			// ID = 0, assume it's a new person and save it
+			if (person.ID == 0)
+			{
+				var newPerson = new Person
+				{
+					Name = person.Name,
+					DateOfBirth = person.DateOfBirth,
+					Gender = person.Gender
+				};
+				db.People.Add(newPerson);
+				db.SaveChanges();
+
+				return newPerson.ID;
+			}
+			else
+			{
+				var existingPerson = db.People.Find(person.ID);
+				if (existingPerson != null)
+				{
+					existingPerson.Name = person.Name;
+					existingPerson.DateOfBirth = person.DateOfBirth;
+					existingPerson.Gender = person.Gender;
+					db.SaveChanges();
+				}
+				return person.ID;
+			}
+		}
 	}
 }

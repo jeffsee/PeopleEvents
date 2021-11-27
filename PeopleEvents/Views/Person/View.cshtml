@@ -42,10 +42,39 @@
 </div>
 <div class="row">
 	<p>
-		<!-- @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) | -->
+		<a href="#" onclick="editPerson(@Model.ID)">Edit</a> | 
 		@Html.ActionLink("Back to List", "Index", "Home")
 	</p>
 </div>
+
+<!-- Modal for editing the person -->
+<div id="modalArea" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 id="modalHeader">Edit Person</h3>
+			</div>
+			<div id="modalBody" class="modal-body">
+				<p>Loading...</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Script to handle person edit modal -->
+<script type="text/javascript">
+	var editPerson = function (personID) {
+		var url = "/Person/Edit/" + personID;
+
+		$("#modalBody").load(url, function () {
+			$("#modalArea").modal("show");
+		})
+	}
+</script>
 
 <!-- Script to auto-refresh the events partial view every five seconds -->
 <script type="text/javascript">

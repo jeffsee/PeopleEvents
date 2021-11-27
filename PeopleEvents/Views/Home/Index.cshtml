@@ -18,3 +18,34 @@
 	</table>
 
 </div>
+<div class="row">
+	<a href="#" onclick="addPerson()">Add new person</a>
+	<!-- Modal for creating a person -->
+	<div id="modalArea" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 id="modalHeader">New Person</h3>
+				</div>
+				<div id="modalBody" class="modal-body">
+					<p>Loading...</p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script to handle person edit modal -->
+	<script type="text/javascript">
+		var addPerson = function () {
+			var url = "/Person/Edit/0";
+
+			$("#modalBody").load(url, function () {
+				$("#modalArea").modal("show");
+			})
+		}
+	</script>
+</div>
