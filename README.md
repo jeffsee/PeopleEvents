@@ -8,6 +8,7 @@ Display People and their associated Events.
 <b>Assumptions</b>
 
 - Each event can only be matched to one person (though with the linking table, we could have a many-to-many relationship)
+- Modifying a person's date of birth does not imply they lose any previously linked events, nor are any existing events that match the new details attached (though this would obviously require discussion on what the exact requirements are - in any case, date of birth changes could well be something that was not required)
 
 <hr>
 
@@ -23,9 +24,10 @@ Display People and their associated Events.
 <b>Project Set-up / Running Notes</b>
 
 - Written in ASP.NET MVC (IDE: Visual Studio 2019)
-- Only additional nuget package added was EntityFramework
+- Additional nuget packages added were for EntityFramework and jQuery UI Datepicker
 - Should be able to compile and run straight away (assuming automatic nuget package download)
 - Additional Event API was added to simulate Event data entering the system to demonstrate the auto-refresh of the events. Simply need to make the GET call (e.g. go to https://localhost:44373/api/Event in the web browser) to generate a random event (though you could also use POST to submit a custom event)
+- Initial database values are initialized in the PEInitializer class. To reset the database on load, simply change the Interface used from System.Data.Entity.DropCreateDatabaseIfModelChanges to System.Data.Entity.DropCreateDatabaseAlways
 
 <hr>
 
