@@ -11,9 +11,9 @@ namespace PeopleEvents.DAL
 	{
 		public PEContext() : base("PEContext") { }
 
-		public DbSet<Person> People { get; set; }
-		public DbSet<Event> Events { get; set; }
-		public DbSet<PersonEvent> PersonEvents { get; set; }
+		public virtual DbSet<Person> People { get; set; }
+		public virtual DbSet<Event> Events { get; set; }
+		public virtual DbSet<PersonEvent> PersonEvents { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

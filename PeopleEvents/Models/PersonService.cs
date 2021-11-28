@@ -9,7 +9,24 @@ namespace PeopleEvents.Models
 	/// </summary>
 	public class PersonService
 	{
-		private PEContext db = new PEContext();
+		private PEContext db;
+
+		/// <summary>
+		/// Constructor with no parameters - initialise the context
+		/// </summary>
+		public PersonService()
+		{
+			db = new PEContext();
+		}
+
+		/// <summary>
+		/// Constuctor with a context - used for unit testing
+		/// </summary>
+		/// <param name="mockedDB"></param>
+		public PersonService(PEContext mockedDB)
+		{
+			db = mockedDB;
+		}
 
 		/// <summary>
 		/// Returns a list of people in the database
