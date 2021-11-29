@@ -34,12 +34,13 @@ Display People and their associated Events.
 <b>Question / Answers:</b>
 
 1. If I had more time I'd:
-  a. Implement a true real-time event refresh using SignalR or similar
-  b. Add more detailed error logging / handling
-  c. Improve the validations on the data
-  d. Improve the look / feel of the GUI
-  e. Complete the unit tests (only added one as a demonstration)
-  f. Add proper services to simulate the extra data sources
+  a. A search system for the people (and possibly events)
+  b. Implement a true real-time event refresh using SignalR or similar
+  c. Add more detailed error logging / handling
+  d. Improve the validations on the data
+  e. Improve the look / feel of the GUI
+  f. Complete the unit tests (only added one as a demonstration)
+  g. Add proper services to simulate the extra data sources
 2. I spent the most time getting things together in my head, trying to picture how everything would fit together (and deciding whether I should use the linking table vs. just displaying events from the data source separately). Technically, I probably took the longest doing the modal pop-up windows to add/edit people.
 3. Suggestions to the clinicians:
   a. Main suggestion would be around the handling of events - i.e. the linking / unlinking that I mentioned above
