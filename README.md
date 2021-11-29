@@ -34,7 +34,7 @@ Display People and their associated Events.
 <b>Question / Answers:</b>
 
 1. If I had more time I'd:
-- A search system for the people (and possibly events)
+- Add a search / filtering system for the people (and possibly events)
 - Implement a true real-time event refresh using SignalR or similar
 - Add more detailed error logging / handling
 - Improve the validations on the data
